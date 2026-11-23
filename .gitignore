@@ -1,5 +1,4 @@
 # Mots de passe
-.env
 secrets/
 
 # Cles et certificats TLS
