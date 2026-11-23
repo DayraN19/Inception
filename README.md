@@ -34,7 +34,7 @@ The stack serves a WordPress website over HTTPS at `https://bgranier.42.fr`:
 
 ### Configuration
 
-Secrets are **not** stored in the Git repository. Create them before the first launch:
+Secrets are **not** stored in the Git repository. `make` (or `make secrets`) creates any missing file in `secrets/` with random passwords. To choose them yourself instead, create them before the first launch:
 
 ```sh
 mkdir -p secrets

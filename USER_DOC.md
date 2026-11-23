@@ -51,6 +51,8 @@ All passwords are stored in the `secrets/` folder at the root of the repository.
 | `secrets/db_password.txt`      | Password of the database user used by WordPress |
 | `secrets/db_root_password.txt` | Password of the MariaDB `root` user |
 
+If these files are missing, `make` generates them with random passwords. Read them with `cat secrets/credentials.txt`.
+
 Usernames, emails and the database name are in `srcs/.env`.
 
 **Changing a password:** passwords are only applied at the first installation. After editing a file in `secrets/`, run `make re` to reinstall (this deletes the existing site content). A WordPress password can also be changed without reinstalling from *wp-admin → Users → Profile*.

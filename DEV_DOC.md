@@ -41,6 +41,8 @@ WP_USER_EMAIL=editor1@example.com
 | `db_root_password.txt` | `/run/secrets/db_root_password` | mariadb |
 | `credentials.txt`      | `/run/secrets/credentials`      | wordpress |
 
+`make secrets` (also run by `make`) creates any missing file with random passwords (`openssl rand -hex 12`). Existing files are never overwritten, since passwords are only applied at the first installation.
+
 `credentials.txt` is sourced by a shell script, so it must contain plain `KEY=value` lines without spaces:
 ```
 WP_ADMIN_PASSWORD=...
@@ -66,7 +68,8 @@ Start-up sequence:
 
 | Rule     | Command |
 |----------|---------|
-| `all` / `up` | create data dirs + `docker compose up -d --build` |
+| `secrets` | create `secrets/` and generate random passwords for missing files (never overwrites) |
+| `all` / `up` | `secrets` + create data dirs + `docker compose up -d --build` |
 | `down`   | `docker compose down` (containers and network removed, data kept) |
 | `stop` / `start` | stop / start the containers without removing them |
 | `ps`     | `docker compose ps` |
