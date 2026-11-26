@@ -10,6 +10,7 @@ RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh
 
 # php-fpm doit écouter sur le réseau (port 9000), pas sur un socket local
 RUN sed -i 's|^listen = .*|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf \
+        && sed -i 's|^error_log = .*|error_log = /proc/self/fd/2|' /etc/php/8.2/fpm/php-fpm.conf \
         && mkdir -p /run/php
 
 COPY tools/setup.sh /usr/local/bin/setup.sh

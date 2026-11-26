@@ -15,7 +15,7 @@ services:
       - inception
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u\"$$MYSQL_USER\" -p\"$$(cat /run/secrets/db_password)\" --silent"]
       interval: 5s
       timeout: 3s
       retries: 10
